@@ -1,0 +1,56 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Resident {
+  id            Int     @default(autoincrement()) @id
+  nom           String
+  prenom        String
+  dateNaissance DateTime
+  contacts      Contact[]
+  visite        Visite?
+  contrat       Contrat?
+  accueil       Accueil?
+}
+
+model Contact {
+  id            Int         @default(autoincrement()) @id
+  nom           String
+  prenom        String
+  actif         Boolean?    @default(false)
+  resident      Resident?   @relation(fields: [residentId], references: [id])
+  residentId    Int?
+}
+
+model Visite {
+  id            Int         @default(autoincrement()) @id
+  createdAt     DateTime    @default(now())
+  resident      Resident?   @relation(fields: [residentId], references: [id])
+  residentId    Int?
+}
+
+model Contrat {
+  id            Int         @default(autoincrement()) @id
+  createdAt     DateTime    @default(now())
+  resident      Resident?   @relation(fields: [residentId], references: [id])
+  residentId    Int?
+}
+
+model Accueil {
+  id            Int         @default(autoincrement()) @id
+  createdAt     DateTime    @default(now())
+  resident      Resident?   @relation(fields: [residentId], references: [id])
+  residentId    Int?
+}
+
+model Evenement {
+  id            Int         @default(autoincrement()) @id
+}

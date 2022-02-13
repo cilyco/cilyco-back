@@ -14,6 +14,8 @@ model Resident {
   id            Int     @default(autoincrement()) @id
   nom           String
   prenom        String
+  commentaire   String?
+  actif         Boolean?    @default(false)
   dateNaissance DateTime
   contacts      Contact[]
   visite        Visite?

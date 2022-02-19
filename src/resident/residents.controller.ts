@@ -18,7 +18,7 @@ export class ResidentsController {
 
     @Post(':id/contact')
     createContact(@Param('id', ParseIntPipe) id: number, @Body() createContactDto: ContactModel) {
-        return this.contactService.create({id}, createContactDto);
+        return this.contactService.create({...createContactDto, residentId: id});
     }
 
     @Get()
@@ -29,6 +29,11 @@ export class ResidentsController {
     @Get(':id')
     findOne(@Param('id', ParseIntPipe) id: number) {
         return this.residentsService.findOne({id});
+    }
+
+    @Get(':id/all')
+    findOneWithAllData(@Param('id', ParseIntPipe) id: number) {
+        return this.residentsService.findOneWithAllData({id});
     }
 
     @Patch(':id')

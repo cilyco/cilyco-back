@@ -6,11 +6,11 @@ import { ResidentsController } from './resident/residents.controller';
 import { ResidentsModule } from './resident/residents.module';
 import { PrismaService } from './prisma.service';
 import { ContactService } from './contact/contact.service';
-import { ContactModule } from './contact/contact.module';
+import { ContactsModule } from './contact/contact.module';
 
 @Module({
-  imports: [PrismaService, ResidentsModule, ContactModule],
+  imports: [ResidentsModule, ContactsModule],
   controllers: [AppController],
-  providers: [AppService, ContactService],
+  providers: [AppService],
 })
 export class AppModule {}

@@ -25,6 +25,12 @@ export class ResidentsService {
 		});
 	}
 
+	async findOneWithAllData(residentWhereUniqueInput: Prisma.ResidentWhereUniqueInput) {
+		return this.prisma.resident.findUnique({
+			where: residentWhereUniqueInput,
+		});
+	}
+
 	async update(params: {
 	     where: Prisma.ResidentWhereUniqueInput,
 	     data: Prisma.ResidentUpdateInput

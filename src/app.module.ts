@@ -5,10 +5,12 @@ import { ResidentsService } from './resident/residents.service';
 import { ResidentsController } from './resident/residents.controller';
 import { ResidentsModule } from './resident/residents.module';
 import { PrismaService } from './prisma.service';
+import { ContactService } from './contact/contact.service';
+import { ContactModule } from './contact/contact.module';
 
 @Module({
-  imports: [PrismaService, ResidentsModule],
+  imports: [PrismaService, ResidentsModule, ContactModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, ContactService],
 })
 export class AppModule {}

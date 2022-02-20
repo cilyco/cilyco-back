@@ -21,6 +21,17 @@ model Resident {
   visite        Visite?
   contrat       Contrat?
   accueil       Accueil?
+  animations    Animation[]
+}
+
+model Agent {
+  id            Int     @default(autoincrement()) @id
+  nom           String
+  prenom        String
+  commentaire   String?
+  actif         Boolean?    @default(false)
+  dateNaissance DateTime
+  animations    Animation[]
 }
 
 model Contact {
@@ -35,22 +46,40 @@ model Contact {
 model Visite {
   id            Int         @default(autoincrement()) @id
   createdAt     DateTime    @default(now())
-  resident      Resident?   @relation(fields: [residentId], references: [id])
-  residentId    Int?
+  resident      Resident   @relation(fields: [residentId], references: [id])
+  residentId    Int
 }
 
 model Contrat {
   id            Int         @default(autoincrement()) @id
   createdAt     DateTime    @default(now())
-  resident      Resident?   @relation(fields: [residentId], references: [id])
-  residentId    Int?
+  resident      Resident   @relation(fields: [residentId], references: [id])
+  residentId    Int
 }
 
 model Accueil {
   id            Int         @default(autoincrement()) @id
   createdAt     DateTime    @default(now())
-  resident      Resident?   @relation(fields: [residentId], references: [id])
-  residentId    Int?
+  resident      Resident   @relation(fields: [residentId], references: [id])
+  residentId    Int
+}
+
+model Vehicule {
+  id            Int         @default(autoincrement()) @id
+  createdAt     DateTime    @default(now())
+  marque        String
+  modele        String
+  kilometrage   Int
+  etat          String
+}
+
+model Animation {
+  id                            Int         @default(autoincrement()) @id
+  createdAt                     DateTime    @default(now())
+  lieu                          String
+  date                          DateTime
+  residents                     Resident[]
+  agents                        Agent[]
 }
 
 model Evenement {

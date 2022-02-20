@@ -1,16 +1,16 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ResidentsService } from './resident/residents.service';
-import { ResidentsController } from './resident/residents.controller';
 import { ResidentsModule } from './resident/residents.module';
-import { PrismaService } from './prisma.service';
-import { ContactService } from './contact/contact.service';
 import { ContactsModule } from './contact/contact.module';
+import { AgentController } from './agent/agent.controller';
+import { AgentModule } from './agent/agent.module';
+import { VehiculeModule } from './vehicule/vehicule.module';
+import { AnimationModule } from './animation/animation.module';
 
 @Module({
-  imports: [ResidentsModule, ContactsModule],
-  controllers: [AppController],
+  imports: [ResidentsModule, ContactsModule, AgentModule, VehiculeModule, AnimationModule],
+  controllers: [AppController, AgentController],
   providers: [AppService],
 })
 export class AppModule {}

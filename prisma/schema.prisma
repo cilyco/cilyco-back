@@ -39,8 +39,8 @@ model Contact {
   nom           String
   prenom        String
   actif         Boolean?    @default(false)
-  resident      Resident?   @relation(fields: [residentId], references: [id])
-  residentId    Int?
+  resident      Resident   @relation(fields: [residentId], references: [id])
+  residentId    Int
 }
 
 model Visite {

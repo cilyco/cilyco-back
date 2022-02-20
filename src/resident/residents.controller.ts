@@ -1,8 +1,8 @@
-import {Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post} from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
 import { ResidentsService } from './residents.service';
 import { Resident as ResidentModel } from '@prisma/client';
 import { Contact as ContactModel } from '@prisma/client';
-import {ContactService} from "../contact/contact.service";
+import { ContactService } from '../contact/contact.service';
 
 @Controller('resident')
 export class ResidentsController {
@@ -44,4 +44,5 @@ export class ResidentsController {
     @Delete(':id')
     remove(@Param('id', ParseIntPipe) id: number) {
         return this.residentsService.remove({ id});
-    }}
+    }
+}

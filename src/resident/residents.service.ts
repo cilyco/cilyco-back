@@ -28,6 +28,9 @@ export class ResidentsService {
 	async findOneWithAllData(residentWhereUniqueInput: Prisma.ResidentWhereUniqueInput) {
 		return this.prisma.resident.findUnique({
 			where: residentWhereUniqueInput,
+			include: {
+				contacts: true
+			}
 		});
 	}
 

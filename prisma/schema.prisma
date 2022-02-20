@@ -17,12 +17,42 @@ model Resident {
   commentaire   String?
   actif         Boolean?    @default(false)
   dateNaissance DateTime
-  contacts      Contact[]
   visite        Visite?
   contrat       Contrat?
   accueil       Accueil?
+  contacts      Contact[]
   animations    Animation[]
   constantes    Constante[]
+  chambres      Chambre[]
+  chutes        Chute[]
+}
+
+model Chute {
+  id            Int     @default(autoincrement()) @id
+  lieu          String
+  date          DateTime
+
+  resident      Resident   @relation(fields: [residentId], references: [id])
+  residentId    Int
+}
+
+model Chambre {
+  id            Int     @default(autoincrement()) @id
+  numero        Int
+  etage         Int
+  actif         Boolean
+  cote          String
+  commentaires  ChambreCommentaire[]
+
+  resident      Resident   @relation(fields: [residentId], references: [id])
+  residentId    Int
+}
+
+model ChambreCommentaire {
+  id            Int         @default(autoincrement()) @id
+  commentaire   String
+  chambre       Chambre    @relation(fields: [chambreId], references: [id])
+  chambreId     Int
 }
 
 model Agent {
@@ -81,6 +111,7 @@ model Vehicule {
   modele                String
   kilometrage           Int
   etat                  String
+  immatriculation       String
   vehiculeEvenement     VehiculeEvenement[]
 }
 
@@ -99,8 +130,11 @@ model Animation {
   lieu                          String
   debut                         DateTime
   fin                           DateTime
-  residents                     Resident[]
-  agents                        Agent[]
+  exterieur                     Boolean
+  animateur                     Agent       @relation(fields: [animateurId], references: [id])
+  animateurId                   Int
+  resident                      Resident    @relation(fields: [residentId], references: [id])
+  residentId                    Int
 }
 
 model Evenement {

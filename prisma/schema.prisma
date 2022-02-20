@@ -22,6 +22,7 @@ model Resident {
   contrat       Contrat?
   accueil       Accueil?
   animations    Animation[]
+  constantes    Constante[]
 }
 
 model Agent {
@@ -40,6 +41,15 @@ model Contact {
   prenom        String
   actif         Boolean?    @default(false)
   resident      Resident   @relation(fields: [residentId], references: [id])
+  residentId    Int
+}
+
+model Constante {
+  id            Int         @default(autoincrement()) @id
+  temperature   Float
+  tension       Float
+  rythme        Int
+  resident      Resident    @relation(fields: [residentId], references: [id])
   residentId    Int
 }
 
@@ -65,19 +75,30 @@ model Accueil {
 }
 
 model Vehicule {
+  id                    Int         @default(autoincrement()) @id
+  createdAt             DateTime    @default(now())
+  marque                String
+  modele                String
+  kilometrage           Int
+  etat                  String
+  vehiculeEvenement     VehiculeEvenement[]
+}
+
+model VehiculeEvenement {
   id            Int         @default(autoincrement()) @id
   createdAt     DateTime    @default(now())
-  marque        String
-  modele        String
-  kilometrage   Int
-  etat          String
+  vehicule      Vehicule    @relation(fields: [vehiculeId], references: [id])
+  vehiculeId    Int
+  debut         DateTime
+  fin           DateTime
 }
 
 model Animation {
   id                            Int         @default(autoincrement()) @id
   createdAt                     DateTime    @default(now())
   lieu                          String
-  date                          DateTime
+  debut                         DateTime
+  fin                           DateTime
   residents                     Resident[]
   agents                        Agent[]
 }

@@ -8,9 +8,10 @@ import { AgentModule } from './agent/agent.module';
 import { VehiculeModule } from './vehicule/vehicule.module';
 import { AnimationModule } from './animation/animation.module';
 import { ChambreModule } from './chambre/chambre.module';
+import { StockModule } from './stock/stock.module';
 
 @Module({
-  imports: [ResidentsModule, ContactsModule, AgentModule, VehiculeModule, AnimationModule, ChambreModule],
+  imports: [ResidentsModule, ContactsModule, AgentModule, VehiculeModule, AnimationModule, ChambreModule, StockModule],
   controllers: [AppController, AgentController],
   providers: [AppService],
 })

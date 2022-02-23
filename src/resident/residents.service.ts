@@ -9,7 +9,8 @@ import {
 export class ResidentsService {
 	constructor(private prisma: PrismaService) {}
 
-	async create(data: Prisma.ResidentCreateInput) : Promise<Resident> {
+	async create(data: Prisma.ResidentUncheckedCreateInput) : Promise<Resident> {
+		console.log(data)
 		return this.prisma.resident.create({
 			data,
 		});

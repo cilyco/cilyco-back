@@ -6,7 +6,7 @@ import { Prisma, Vehicule } from '@prisma/client';
 export class VehiculeService {
   constructor(private prisma: PrismaService) {}
 
-  async create(data: Prisma.VehiculeCreateInput): Promise<Vehicule> {
+  async create(data: Prisma.VehiculeUncheckedCreateInput): Promise<Vehicule> {
     return this.prisma.vehicule.create({
       data,
     });

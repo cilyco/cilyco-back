@@ -11,15 +11,18 @@ datasource db {
 }
 
 model Resident {
-  id            Int     @default(autoincrement()) @id
+  id            Int         @default(autoincrement()) @id
   nom           String
   prenom        String
   commentaire   String?
-  actif         Boolean?    @default(false)
+  actif         Boolean?    @default(true)
   dateNaissance DateTime
+  statut        String?
+
   visite        Visite?
   contrat       Contrat?
   accueil       Accueil?
+
   contacts      Contact[]
   animations    Animation[]
   constantes    Constante[]
@@ -31,6 +34,7 @@ model Chute {
   id            Int     @default(autoincrement()) @id
   lieu          String
   date          DateTime
+  commentaire   String
 
   resident      Resident   @relation(fields: [residentId], references: [id])
   residentId    Int
@@ -86,21 +90,25 @@ model Constante {
 model Visite {
   id            Int         @default(autoincrement()) @id
   createdAt     DateTime    @default(now())
-  resident      Resident   @relation(fields: [residentId], references: [id])
+  date          DateTime
+
+  resident      Resident    @relation(fields: [residentId], references: [id])
   residentId    Int
 }
 
 model Contrat {
   id            Int         @default(autoincrement()) @id
   createdAt     DateTime    @default(now())
-  resident      Resident   @relation(fields: [residentId], references: [id])
+
+  resident      Resident    @relation(fields: [residentId], references: [id])
   residentId    Int
 }
 
 model Accueil {
   id            Int         @default(autoincrement()) @id
   createdAt     DateTime    @default(now())
-  resident      Resident   @relation(fields: [residentId], references: [id])
+
+  resident      Resident    @relation(fields: [residentId], references: [id])
   residentId    Int
 }
 
@@ -112,16 +120,19 @@ model Vehicule {
   kilometrage           Int
   etat                  String
   immatriculation       String
+  commentaire           String
+  couleur               String
   vehiculeEvenement     VehiculeEvenement[]
 }
 
 model VehiculeEvenement {
   id            Int         @default(autoincrement()) @id
   createdAt     DateTime    @default(now())
-  vehicule      Vehicule    @relation(fields: [vehiculeId], references: [id])
-  vehiculeId    Int
   debut         DateTime
   fin           DateTime
+
+  vehicule      Vehicule    @relation(fields: [vehiculeId], references: [id])
+  vehiculeId    Int
 }
 
 model Animation {

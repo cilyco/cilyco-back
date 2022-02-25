@@ -6,8 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = "postgresql://postgres:1234@localhost:5432/test"
 }
 
 model Resident {
@@ -28,6 +28,8 @@ model Resident {
   constantes    Constante[]
   chambres      Chambre[]
   chutes        Chute[]
+
+  updatedAt DateTime @updatedAt
 }
 
 model Chute {
@@ -70,12 +72,21 @@ model Agent {
 }
 
 model Contact {
-  id            Int         @default(autoincrement()) @id
-  nom           String
-  prenom        String
-  actif         Boolean?    @default(false)
+  id                Int         @default(autoincrement()) @id
+  nom               String
+  prenom            String
+  actif             Boolean?    @default(false)
+  lien              String[]
+  commentaire       String?
+  telephone_1_type  String?
+  telephone_1_numero  String?
+  telephone_2_type  String?
+  telephone_2_numero  String?
+
   resident      Resident   @relation(fields: [residentId], references: [id])
   residentId    Int
+
+  updatedAt DateTime @updatedAt
 }
 
 model Constante {

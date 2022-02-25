@@ -22,8 +22,8 @@ export class ResidentsController {
   }
 
   @Post(':id/contact')
-  createContact(@Param('id', ParseIntPipe) id: number, @Body() createContactDto: ContactModel) {
-    return this.contactService.create({ ...createContactDto, residentId: id });
+  async createContact(@Param('id', ParseIntPipe) id: number, @Body() createContactDto: ContactModel) {
+    return this.contactService.create({...createContactDto, residentId: id});
   }
 
   @Post(':id/chambre')
@@ -44,6 +44,11 @@ export class ResidentsController {
   @Get(':id/all')
   findOneWithAllData(@Param('id', ParseIntPipe) id: number) {
     return this.residentsService.findOneWithAllData({ id });
+  }
+
+  @Get(':id/contact')
+  findResidentContact(@Param('id', ParseIntPipe) id: number) {
+    return this.contactService.findForResident(id);
   }
 
   @Patch(':id')

@@ -8,7 +8,15 @@ export class ContactService {
 
     async create(data: Prisma.ContactUncheckedCreateInput) : Promise<Contact> {
         return this.prisma.contact.create({
-            data,
+            data
+        });
+    }
+
+    async findForResident(id: number) : Promise<Contact[]> {
+        return this.prisma.contact.findMany({
+            where: {
+                residentId: id
+            }
         });
     }
 }

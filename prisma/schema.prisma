@@ -18,6 +18,7 @@ model Resident {
   actif         Boolean?    @default(true)
   dateNaissance DateTime
   statut        String?
+  adresse       String?
 
   visite        Visite?
   contrat       Contrat?
@@ -77,6 +78,7 @@ model Contact {
   prenom            String
   actif             Boolean?    @default(false)
   lien              String[]
+  sexe              String?
   commentaire       String?
   telephone_1_type  String?
   telephone_1_numero  String?

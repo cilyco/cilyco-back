@@ -51,6 +51,14 @@ export class ResidentsController {
     return this.contactService.findForResident(id);
   }
 
+  @Patch(':idContact/contact')
+  updateContact(@Param('idContact', ParseIntPipe) id: number, @Body() updateContactDto: ContactModel) {
+    return this.contactService.update({
+      where: { id },
+      data: updateContactDto,
+    });
+  }
+
   @Patch(':id')
   update(@Param('id', ParseIntPipe) id: number, @Body() updateResidentDto: ResidentModel) {
     return this.residentsService.update({

@@ -20,6 +20,7 @@ export class VehiculeController {
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.vehiculeService.findOne({ id });
   }
+
   @Patch(':id')
   update(@Param('id', ParseIntPipe) id: number, @Body() updateVehiculeDto: VehiculeModel) {
     return this.vehiculeService.update({

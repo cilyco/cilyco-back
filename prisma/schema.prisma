@@ -165,3 +165,12 @@ model Animation {
 model Evenement {
   id            Int         @default(autoincrement()) @id
 }
+
+model Utilisateur {
+ id             Int         @default(autoincrement()) @id
+ nom            String
+ prenom         String
+ login          String
+ password       String
+ createdAt      DateTime    @default(now())
+}

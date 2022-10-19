@@ -9,9 +9,11 @@ import { VehiculeModule } from './vehicule/vehicule.module';
 import { AnimationModule } from './animation/animation.module';
 import { ChambreModule } from './chambre/chambre.module';
 import { StockModule } from './stock/stock.module';
+import { AuthModule } from './auth/auth.module';
+import { UtilisateurModule } from './utilisateur/utilisateur.module';
 
 @Module({
-  imports: [ResidentsModule, ContactsModule, AgentModule, VehiculeModule, AnimationModule, ChambreModule, StockModule],
+  imports: [ResidentsModule, ContactsModule, AgentModule, VehiculeModule, AnimationModule, ChambreModule, StockModule, AuthModule, UtilisateurModule],
   controllers: [AppController, AgentController],
   providers: [AppService],
 })

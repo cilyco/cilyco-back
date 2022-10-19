@@ -25,7 +25,6 @@ services:
       PGADMIN_CONFIG_SERVER_MODE: 'False'
     volumes:
        - pgadmin:/var/lib/pgadmin
-
     ports:
       - "5433:80"
     networks:

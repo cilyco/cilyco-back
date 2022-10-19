@@ -6,11 +6,11 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors();
   const config = new DocumentBuilder()
-  .setTitle('Cilyco')
-  .setDescription('Cilyco API description')
-  .setVersion('1.0')
-  .addTag('cilyco')
-  .build();
+    .setTitle('Cilyco')
+    .setDescription('Cilyco API description')
+    .setVersion('1.0')
+    .addTag('cilyco')
+    .build();
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('doc', app, document);

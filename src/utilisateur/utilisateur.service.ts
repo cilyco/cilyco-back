@@ -1,27 +1,24 @@
 import { Injectable } from '@nestjs/common';
-
-interface User {
-  userId: number;
-  username: string;
-  password: string;
-}
+import { PrismaService } from '../prisma.service';
+import { Utilisateur } from '@prisma/client';
+import { bcrypt } from 'bcrypt';
 
 @Injectable()
 export class UtilisateurService {
-  private readonly users = [
-    {
-      userId: 1,
-      username: 'john',
-      password: 'changeme',
-    },
-    {
-      userId: 2,
-      username: 'maria',
-      password: 'guess',
-    },
-  ];
+  constructor(private prisma: PrismaService) {}
 
-  async findOne(username: string): Promise<User | undefined> {
-    return this.users.find((user) => user.username === username);
+  async create(data: Utilisateur): Promise<Utilisateur> {
+    data.password = bcrypt.hash(data.password, 8);
+    return this.prisma.utilisateur.create({
+      data,
+    });
+  }
+
+  async connect(login: string): Promise<Utilisateur | null> {
+    return this.prisma.utilisateur.findFirst({
+      where: {
+        login,
+      },
+    });
   }
 }

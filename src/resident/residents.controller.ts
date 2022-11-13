@@ -1,4 +1,13 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { ResidentsService } from './residents.service';
 import {
   Resident as ResidentModel,
@@ -22,13 +31,19 @@ export class ResidentsController {
   }
 
   @Post(':id/contact')
-  async createContact(@Param('id', ParseIntPipe) id: number, @Body() createContactDto: ContactModel) {
-    return this.contactService.create({...createContactDto, residentId: id});
+  async createContact(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() createContactDto: ContactModel,
+  ) {
+    return this.contactService.create({ ...createContactDto, residentId: id });
   }
 
   @Post(':id/chambre')
-  createChambre(@Param('id', ParseIntPipe) id: number, @Body() createChambreDto: ChambreModel) {
-    return this.chambreService.create({ ...createChambreDto, residentId: id});
+  createChambre(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() createChambreDto: ChambreModel,
+  ) {
+    return this.chambreService.create({ ...createChambreDto, residentId: id });
   }
 
   @Get()
@@ -52,7 +67,10 @@ export class ResidentsController {
   }
 
   @Patch(':idContact/contact')
-  updateContact(@Param('idContact', ParseIntPipe) id: number, @Body() updateContactDto: ContactModel) {
+  updateContact(
+    @Param('idContact', ParseIntPipe) id: number,
+    @Body() updateContactDto: ContactModel,
+  ) {
     return this.contactService.update({
       where: { id },
       data: updateContactDto,
@@ -60,7 +78,10 @@ export class ResidentsController {
   }
 
   @Patch(':id')
-  update(@Param('id', ParseIntPipe) id: number, @Body() updateResidentDto: ResidentModel) {
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateResidentDto: ResidentModel,
+  ) {
     return this.residentsService.update({
       where: { id },
       data: updateResidentDto,
@@ -69,6 +90,6 @@ export class ResidentsController {
 
   @Delete(':id')
   remove(@Param('id', ParseIntPipe) id: number) {
-    return this.residentsService.remove({ id});
+    return this.residentsService.remove({ id });
   }
 }

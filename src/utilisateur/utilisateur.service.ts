@@ -14,6 +14,10 @@ export class UtilisateurService {
     });
   }
 
+  async users(): Promise<Utilisateur[]> {
+    return this.prisma.utilisateur.findMany();
+  }
+
   async connect(login: string): Promise<Utilisateur | null> {
     return this.prisma.utilisateur.findFirst({
       where: {

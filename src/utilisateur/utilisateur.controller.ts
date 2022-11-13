@@ -11,10 +11,10 @@ import { UtilisateurService } from './utilisateur.service';
 
 @Controller('utilisateur')
 export class UtilisateurController {
-  constructor(private utilisateurService: UtilisateurService) {}
+  constructor(private readonly utilisateurService: UtilisateurService) {}
   @Get()
   users(): any {
-    return 'YO';
+    return this.utilisateurService.users();
   }
   @Get(':id')
   user(@Param('id', ParseIntPipe) id: number): any {

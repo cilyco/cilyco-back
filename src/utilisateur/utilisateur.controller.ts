@@ -3,10 +3,10 @@ import {
   Controller,
   Get,
   Param,
-  ParseIntPipe,
+  ParseIntPipe, Patch,
   Post,
 } from '@nestjs/common';
-import { Utilisateur as UtilsateurModel } from '@prisma/client';
+import {Utilisateur as UtilsateurModel} from '@prisma/client';
 import { UtilisateurService } from './utilisateur.service';
 
 @Controller('utilisateur')
@@ -22,6 +22,10 @@ export class UtilisateurController {
   }
   @Post()
   createUser(@Body() createUtilsateurDto: UtilsateurModel) {
+    return this.utilisateurService.create(createUtilsateurDto);
+  }
+  @Patch()
+  updateUser(@Body() createUtilsateurDto: UtilsateurModel) {
     return this.utilisateurService.create(createUtilsateurDto);
   }
 }

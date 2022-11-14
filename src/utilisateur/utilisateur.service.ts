@@ -14,6 +14,15 @@ export class UtilisateurService {
     });
   }
 
+  async edit(data: Utilisateur): Promise<Utilisateur> {
+    return this.prisma.utilisateur.update({
+      where: {
+        id: data.id,
+      },
+      data,
+    });
+  }
+
   async users(): Promise<Utilisateur[]> {
     return this.prisma.utilisateur.findMany();
   }

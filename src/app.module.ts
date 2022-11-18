@@ -11,9 +11,10 @@ import { ChambreModule } from './chambre/chambre.module';
 import { StockModule } from './stock/stock.module';
 import { AuthModule } from './auth/auth.module';
 import { UtilisateurModule } from './utilisateur/utilisateur.module';
+import { ComptabiliteModule } from './comptabilite/comptabilite.module';
 
 @Module({
-  imports: [ResidentsModule, ContactsModule, AgentModule, VehiculeModule, AnimationModule, ChambreModule, StockModule, AuthModule, UtilisateurModule],
+  imports: [ResidentsModule, ContactsModule, AgentModule, VehiculeModule, AnimationModule, ChambreModule, StockModule, AuthModule, UtilisateurModule, ComptabiliteModule],
   controllers: [AppController, AgentController],
   providers: [AppService],
 })

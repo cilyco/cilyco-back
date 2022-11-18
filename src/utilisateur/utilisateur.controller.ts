@@ -3,10 +3,11 @@ import {
   Controller,
   Get,
   Param,
-  ParseIntPipe, Patch,
+  ParseIntPipe,
+  Patch,
   Post,
 } from '@nestjs/common';
-import {Utilisateur as UtilsateurModel} from '@prisma/client';
+import { Utilisateur as UtilsateurModel } from '@prisma/client';
 import { UtilisateurService } from './utilisateur.service';
 
 @Controller('utilisateur')

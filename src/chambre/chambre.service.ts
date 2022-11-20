@@ -19,8 +19,8 @@ export class ChambreService {
   }
 
   async update(params: {
-    where: Prisma.ChambreWhereUniqueInput,
-    data: Prisma.ChambreUpdateInput
+    where: Prisma.ChambreWhereUniqueInput;
+    data: Prisma.ChambreUpdateInput;
   }) {
     const { data, where } = params;
     return this.prisma.chambre.update({
@@ -34,5 +34,4 @@ export class ChambreService {
       where,
     });
   }
-
 }

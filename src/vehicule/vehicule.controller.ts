@@ -1,4 +1,13 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { VehiculeService } from './vehicule.service';
 import { Vehicule as VehiculeModel } from '@prisma/client';
 
@@ -22,7 +31,10 @@ export class VehiculeController {
   }
 
   @Patch(':id')
-  update(@Param('id', ParseIntPipe) id: number, @Body() updateVehiculeDto: VehiculeModel) {
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateVehiculeDto: VehiculeModel,
+  ) {
     return this.vehiculeService.update({
       where: { id },
       data: updateVehiculeDto,

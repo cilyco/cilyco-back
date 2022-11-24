@@ -149,6 +149,16 @@ model VehiculeEvenement {
   vehiculeId    Int
 }
 
+model Deplacement {
+  id            Int         @default(autoincrement()) @id
+  createdAt     DateTime    @default(now())
+  debut         DateTime
+  fin           DateTime
+
+  vehicule      Vehicule    @relation(fields: [vehiculeId], references: [id])
+  vehiculeId    Int
+}
+
 model Animation {
   id                            Int         @default(autoincrement()) @id
   createdAt                     DateTime    @default(now())

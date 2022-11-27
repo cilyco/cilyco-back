@@ -136,17 +136,8 @@ model Vehicule {
   immatriculation       String
   commentaire           String
   couleur               String
-  vehiculeEvenement     VehiculeEvenement[]
-}
-
-model VehiculeEvenement {
-  id            Int         @default(autoincrement()) @id
-  createdAt     DateTime    @default(now())
-  debut         DateTime
-  fin           DateTime
-
-  vehicule      Vehicule    @relation(fields: [vehiculeId], references: [id])
-  vehiculeId    Int
+  deplacements          Deplacement[]
+  animations            Animation[]
 }
 
 model Deplacement {
@@ -166,10 +157,9 @@ model Animation {
   debut                         DateTime
   fin                           DateTime
   exterieur                     Boolean
-  animateur                     Agent       @relation(fields: [animateurId], references: [id])
-  animateurId                   Int
-  resident                      Resident    @relation(fields: [residentId], references: [id])
-  residentId                    Int
+  agents                        Agent[]
+  residents                     Resident[]
+  vehicules                     Vehicule[]
 }
 
 model Evenement {
